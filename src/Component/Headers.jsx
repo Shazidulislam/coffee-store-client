@@ -15,6 +15,9 @@ const Headers = () => {
             <li>
                 <NavLink to={"/addcoffee"}>Add Coffee</NavLink>
             </li>
+            <li>
+                <NavLink to={"/users"}>ALL User</NavLink>
+            </li>
         </ul>
 		<div className="items-center flex-shrink-0 hidden lg:flex">
             <Link to={"/signin"}>

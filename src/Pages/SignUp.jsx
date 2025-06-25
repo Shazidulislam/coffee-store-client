@@ -10,25 +10,38 @@ const SignUp = () => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form)
-        const newUsre = Object.fromEntries(formData.entries())
+        // const newUsre = Object.fromEntries(formData.entries())
         // const email = formData.get("email")
         // const password = formData.get("password")
-        const email = newUsre.email;
-        const password = newUsre.password
+        // const email = newUsre.email;
+        // const password = newUsre.password
+         const {email , password , ...restData } = Object.fromEntries(formData.entries())
+        console.log(restData)
+
+        // const userProfile = {
+        //     email,
+        //     ...rest
+        // }
 
         // registeuserWithEmailandPassword with firebase auth
         createUser(email , password)
         .then(result=>{
             console.log(result.user)
-
-          
+  
+             const userProfile = {
+                    email,
+                    ...restData,
+                    lastSignInTime:result.user?.metadata?.lastSignInTime,
+                    creationTime:result.user?.metadata?.creationTime,
+                }
+           
                  // post data client to server
                     fetch("http://localhost:4000/users" ,{
                         method:"POST",
                         headers:{
                             "Content-Type":"application/json",
                         },
-                        body:JSON.stringify(newUsre)
+                        body:JSON.stringify(userProfile)
                     })
                     .then((res)=>res.json())
                     .then((data)=>{
