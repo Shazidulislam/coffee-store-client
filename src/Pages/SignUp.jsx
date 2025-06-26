@@ -82,7 +82,7 @@ const SignUp = () => {
                 <input type="email" name='email' className="input w-full" placeholder="Email" />
                 <label className="label">Password</label>
                 <input type="password" name='password' className="input w-full" placeholder="Password" />
-                <button type='submit' className="btn btn-neutral mt-4">Login</button>
+                <button type='submit' className="btn btn-neutral mt-4">Sign Up</button>
                 </form>
             </div>
         </div>
